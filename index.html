@@ -93,7 +93,7 @@
         }
 
         h1 {
-          font-size: clamp(42px, 8vw, 90px);
+          font-size: clamp(42px, 10vw, 90px);
           line-height: 1;
           margin-bottom: 20px;
         }
@@ -319,23 +319,165 @@
           color: #ffcdf8;
         }
 
-        @media (max-width: 600px) {
-          .container {
-            padding: 30px 16px;
-          }
+        @media (max-width: 768px) {
+  body {
+    background: radial-gradient(circle at top, #4a0b55, #080808 60%);
+  }
 
-          .card {
-            padding: 24px;
-          }
+  .container {
+    max-width: 100%;
+    padding: 22px 14px;
+  }
 
-          h2 {
-            font-size: 30px;
-          }
+  .hero {
+    min-height: 88vh;
+    justify-content: center;
+    padding-top: 20px;
+  }
 
-          .subtitle {
-            font-size: 18px;
-          }
-        }
+  .badge {
+    font-size: 12px;
+    padding: 8px 13px;
+    margin-bottom: 18px;
+    max-width: 95%;
+  }
+
+  h1 {
+    font-size: 42px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-size: 27px;
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  p,
+  .subtitle {
+    font-size: 15.5px;
+    line-height: 1.65;
+  }
+
+  .subtitle {
+    margin-bottom: 24px;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .status-card {
+    padding: 15px 17px;
+    border-radius: 18px;
+  }
+
+  .status-card strong {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 15px 18px;
+    font-size: 15px;
+  }
+
+  section {
+    margin-bottom: 42px;
+  }
+
+  .card {
+    padding: 21px;
+    border-radius: 22px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .skill {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .skill:hover {
+    transform: none;
+  }
+
+  .quote {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .list div {
+    font-size: 15.5px;
+    padding: 14px;
+  }
+
+  .progress {
+    margin: 20px auto;
+  }
+
+  .progress-row {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  input,
+  textarea {
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+
+  textarea {
+    min-height: 115px;
+  }
+
+  label {
+    font-size: 15px;
+  }
+
+  .final {
+    min-height: auto;
+    padding: 25px 0 60px;
+  }
+
+  .chess {
+    font-size: 48px;
+    opacity: 0.045;
+  }
+
+  .chess.one {
+    top: 10%;
+    left: -5%;
+  }
+
+  .chess.two {
+    top: 48%;
+    right: -6%;
+  }
+
+  .chess.three {
+    bottom: 5%;
+    left: 5%;
+  }
+
+  .loader-box {
+    padding: 24px;
+  }
+
+  .loader-text {
+    font-size: 15px;
+  }
+}
     </style>
 </head>
 
