@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bewerbung als Laras Boyfriend</title>
+
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Inter, Arial, sans-serif;
+        }
+
+        body {
+          min-height: 100vh;
+          background: radial-gradient(circle at top, #3b0a45, #080808 55%);
+          color: white;
+          overflow-x: hidden;
+        }
+
+        #loader {
+          position: fixed;
+          inset: 0;
+          background: #080808;
+          z-index: 999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        #loader.hidden {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .loader-box {
+          max-width: 420px;
+          padding: 30px;
+        }
+
+        .loader-text {
+          color: #f3c4ff;
+          margin: 12px 0;
+          font-size: 18px;
+        }
+
+        .loading-bar {
+          height: 10px;
+          background: rgba(255,255,255,0.15);
+          border-radius: 20px;
+          overflow: hidden;
+          margin: 20px 0;
+        }
+
+        .loading-fill {
+          height: 100%;
+          width: 0%;
+          background: linear-gradient(90deg, #ff9ff3, #c56cff);
+          animation: load 2.2s forwards;
+        }
+
+        @keyframes load {
+          to { width: 100%; }
+        }
+
+        .container {
+          max-width: 1000px;
+          margin: auto;
+          padding: 40px 20px;
+        }
+
+        .hero {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .badge {
+          margin: 0 auto 20px;
+          padding: 10px 18px;
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 999px;
+          background: rgba(255,255,255,0.08);
+          backdrop-filter: blur(15px);
+          width: fit-content;
+          color: #f3c4ff;
+        }
+
+        h1 {
+          font-size: clamp(42px, 8vw, 90px);
+          line-height: 1;
+          margin-bottom: 20px;
+        }
+
+        .gradient {
+          background: linear-gradient(90deg, #ffbdf7, #ffffff, #d889ff);
+          -webkit-background-clip: text;
+          color: transparent;
+        }
+
+        .subtitle {
+          font-size: 20px;
+          color: #d8c9dd;
+          max-width: 700px;
+          margin: 0 auto 35px;
+          line-height: 1.6;
+        }
+
+        .status-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 15px;
+          max-width: 760px;
+          margin: 0 auto 35px;
+        }
+
+        .status-card {
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 20px;
+          padding: 18px;
+          backdrop-filter: blur(18px);
+          text-align: left;
+        }
+
+        .status-card span {
+          color: #c9b6d1;
+          font-size: 14px;
+        }
+
+        .status-card strong {
+          display: block;
+          margin-top: 6px;
+          font-size: 18px;
+        }
+
+        .btn {
+          border: none;
+          padding: 16px 28px;
+          border-radius: 999px;
+          background: white;
+          color: #2b0033;
+          font-weight: 700;
+          font-size: 16px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .btn:hover {
+          transform: translateY(-3px) scale(1.03);
+          box-shadow: 0 15px 40px rgba(255,255,255,0.25);
+        }
+
+        section {
+          margin-bottom: 80px;
+        }
+
+        .card {
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 28px;
+          padding: 30px;
+          backdrop-filter: blur(18px);
+          box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+
+        h2 {
+          font-size: 36px;
+          margin-bottom: 20px;
+        }
+
+        p {
+          color: #ddd;
+          line-height: 1.7;
+          font-size: 18px;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 20px;
+        }
+
+        .skill {
+          padding: 24px;
+          border-radius: 22px;
+          background: rgba(255,255,255,0.07);
+          border: 1px solid rgba(255,255,255,0.12);
+          transition: 0.3s;
+        }
+
+        .skill:hover {
+          transform: translateY(-6px);
+          background: rgba(255,255,255,0.11);
+        }
+
+        .skill h3 {
+          margin-bottom: 10px;
+          font-size: 22px;
+        }
+
+        .bar {
+          height: 10px;
+          background: rgba(255,255,255,0.15);
+          border-radius: 20px;
+          overflow: hidden;
+          margin-top: 12px;
+        }
+
+        .fill {
+          height: 100%;
+          background: linear-gradient(90deg, #ff9ff3, #c56cff);
+          border-radius: 20px;
+        }
+
+        .quote {
+          font-size: 24px;
+          font-style: italic;
+          color: white;
+          margin-top: 20px;
+        }
+
+        .center {
+          text-align: center;
+        }
+
+        .list {
+          display: grid;
+          gap: 14px;
+          margin-top: 20px;
+        }
+
+        .list div {
+          background: rgba(255,255,255,0.06);
+          padding: 16px;
+          border-radius: 16px;
+          border: 1px solid rgba(255,255,255,0.12);
+          color: #eee;
+          font-size: 17px;
+        }
+
+        .progress {
+          max-width: 500px;
+          margin: 25px auto;
+          text-align: left;
+        }
+
+        .progress-row {
+          display: flex;
+          justify-content: space-between;
+          padding: 14px 0;
+          border-bottom: 1px solid rgba(255,255,255,0.12);
+          color: #eee;
+        }
+
+        input, textarea {
+          width: 100%;
+          padding: 16px;
+          border-radius: 16px;
+          border: 1px solid rgba(255,255,255,0.18);
+          margin: 12px 0 22px;
+          font-size: 16px;
+          background: rgba(255,255,255,0.1);
+          color: white;
+          outline: none;
+        }
+
+        textarea {
+          min-height: 130px;
+          resize: vertical;
+        }
+
+        input::placeholder, textarea::placeholder {
+          color: #bcaec2;
+        }
+
+        label {
+          font-size: 17px;
+          color: #f3c4ff;
+          display: block;
+          text-align: left;
+          margin-top: 10px;
+        }
+
+        .final {
+          min-height: 70vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .chess {
+          position: fixed;
+          font-size: 80px;
+          opacity: 0.06;
+          z-index: -1;
+          animation: float 8s ease-in-out infinite;
+        }
+
+        .chess.one { top: 12%; left: 8%; }
+        .chess.two { top: 60%; right: 10%; animation-delay: 2s; }
+        .chess.three { bottom: 10%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-25px) rotate(8deg); }
+        }
+
+        .success {
+          display: none;
+          margin-top: 25px;
+          font-size: 22px;
+          color: #ffcdf8;
+        }
+
+        @media (max-width: 600px) {
+          .container {
+            padding: 30px 16px;
+          }
+
+          .card {
+            padding: 24px;
+          }
+
+          h2 {
+            font-size: 30px;
+          }
+
+          .subtitle {
+            font-size: 18px;
+          }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="loader">
+    <div class="loader-box">
+        <div class="loader-text">Bewerbung wird gestartet...</div>
+        <div class="loader-text">Bewerber wird geladen: Elias</div>
+        <div class="loading-bar"><div class="loading-fill"></div></div>
+        <div class="loader-text">Personalabteilung wird gesucht...</div>
+        <div class="loader-text">✓ Lara gefunden</div>
+        <div class="loader-text">Vertrauliche Bewerbung wird vorbereitet...</div>
+    </div>
+</div>
+
+<div class="chess one">♟</div>
+<div class="chess two">♛</div>
+<div class="chess three">♞</div>
+
+<div class="container">
+
+    <div class="hero">
+        <div class="badge">Vertrauliches Dokument · Nur für Lara bestimmt</div>
+
+        <h1>
+            Bewerbung als <br />
+            <span class="gradient">Laras Boyfriend</span>
+        </h1>
+
+        <p class="subtitle">
+            Sehr geehrte Lara,<br><br>
+            nach sorgfältiger Analyse deiner Ausstrahlung, deiner Vibes und deiner Antworten
+            bin ich zu dem Entschluss gekommen, dass ich für diese Position bestens geeignet bin.
+        </p>
+
+        <div class="status-grid">
+            <div class="status-card">
+                <span>Bewerber</span>
+                <strong>Elias</strong>
+            </div>
+            <div class="status-card">
+                <span>Personalabteilung</span>
+                <strong>Lara</strong>
+            </div>
+            <div class="status-card">
+                <span>Status</span>
+                <strong>🟢 Bewerbung wird geprüft</strong>
+            </div>
+        </div>
+
+        <button class="btn" onclick="scrollToApplication()">Bewerbung öffnen</button>
+    </div>
+
+    <section id="application">
+        <div class="card">
+            <h2>Warum ich?</h2>
+            <p>
+                Ich bringe Humor, Loyalität, Selbstbewusstsein und genug Kreativität mit,
+                um eine komplette Website nur für diese Bewerbung zu programmieren.
+            </p>
+            <p class="quote">
+                „Ein guter Schachspieler weiß genau, wie man seine Königin beschützt.“ ♛
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Qualifikationen</h2>
+
+        <div class="grid">
+            <div class="skill">
+                <h3>♟ Schach</h3>
+                <p>Weiß genau, wie man seine Königin beschützt.</p>
+                <div class="bar"><div class="fill" style="width: 100%"></div></div>
+            </div>
+
+            <div class="skill">
+                <h3>💻 Programmieren</h3>
+                <p>Hat diese Website speziell für diese Bewerbung entwickelt.</p>
+                <div class="bar"><div class="fill" style="width: 98%"></div></div>
+            </div>
+
+            <div class="skill">
+                <h3>😂 Humor</h3>
+                <p>Kann unangenehme Momente in lustige Erinnerungen verwandeln.</p>
+                <div class="bar"><div class="fill" style="width: 94%"></div></div>
+            </div>
+
+            <div class="skill">
+                <h3>🧠 Problemlösung</h3>
+                <p>Findet Lösungen statt Ausreden.</p>
+                <div class="bar"><div class="fill" style="width: 93%"></div></div>
+            </div>
+
+            <div class="skill">
+                <h3>☕ Date-Planung</h3>
+                <p>Kaffee, Spaziergänge oder spontane Abenteuer.</p>
+                <div class="bar"><div class="fill" style="width: 90%"></div></div>
+            </div>
+
+            <div class="skill">
+                <h3>❤️ Loyalität</h3>
+                <p>Green Flag zertifiziert. Keine Spielchen, außer Schach.</p>
+                <div class="bar"><div class="fill" style="width: 100%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card">
+            <h2>Erfolge</h2>
+            <div class="list">
+                <div>🏆 Diese Bewerbung von Grund auf programmiert</div>
+                <div>♛ Opfert niemals freiwillig die Queen</div>
+                <div>⚡ Antwortet schneller als die Personalabteilung</div>
+                <div>❤️ Bewirbt sich aktuell nur auf genau eine Stelle</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Referenzen</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Mama</h3>
+                <p>„Er ist ein guter Junge.“</p>
+            </div>
+
+            <div class="card">
+                <h3>Freunde</h3>
+                <p>„Nervig gut in Schach.“</p>
+            </div>
+
+            <div class="card">
+                <h3>Zukünftige Lara</h3>
+                <p>„Bewerbung angenommen.“</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card center">
+            <h2>Vorschlag fürs Vorstellungsgespräch</h2>
+            <p>
+                Ich würde mich freuen, meine Qualifikationen persönlich unter Beweis zu stellen.
+                Möglicher Ort: Kaffee, Spaziergang oder etwas Spontanes.
+            </p>
+        </div>
+    </section>
+
+    <section class="final">
+        <div class="card center">
+            <h2>Letzter Schritt</h2>
+
+            <p>
+                Herzlichen Glückwunsch, Lara. Meine Bewerbung hat die letzte Auswahlrunde erreicht.
+            </p>
+
+            <div class="progress">
+                <div class="progress-row"><span>Bewerbung geprüft</span><span>✅</span></div>
+                <div class="progress-row"><span>Qualifikationen bestätigt</span><span>✅</span></div>
+                <div class="progress-row"><span>Sympathie festgestellt</span><span>✅</span></div>
+                <div class="progress-row"><span>Persönliches Kennenlernen</span><span>⏳</span></div>
+            </div>
+
+            <p>
+                Falls dich diese Bewerbung überzeugt hat, kannst du hier deine Antwort hinterlassen.
+            </p>
+
+            <form action="https://formspree.io/f/mdaryjqq" method="POST" onsubmit="setTime()">
+                <label for="instagram">Instagram</label>
+                <input
+                        type="text"
+                        id="instagram"
+                        name="Instagram"
+                        placeholder="@deinprofil"
+                />
+
+                <label for="phone">Telefonnummer</label>
+                <input
+                        type="tel"
+                        id="phone"
+                        name="Telefonnummer"
+                        placeholder="+49..."
+                />
+
+                <label for="note">Nachricht an Elias</label>
+                <textarea
+                        id="note"
+                        name="Nachricht an Elias"
+                        placeholder="z.B. Ich glaube, wir sollten dieses Vorstellungsgespräch wirklich führen 😉"
+                ></textarea>
+
+                <input type="hidden" name="Bewerber" value="Elias">
+                <input type="hidden" name="Personalabteilung" value="Lara">
+                <input type="hidden" name="Status" value="Bewerbung genehmigt">
+                <input type="hidden" name="Nachricht" value="Lara hat die Bewerbung genehmigt ❤️">
+                <input type="hidden" name="Zeitpunkt" id="time">
+
+                <button class="btn" type="submit">
+                    Bewerbung genehmigen ❤️
+                </button>
+            </form>
+
+            <div class="success" id="successMessage">
+                Bewerbung erfolgreich genehmigt. Der Bewerber wird sich in Kürze melden. 🎉
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        document.getElementById("loader").classList.add("hidden");
+      }, 3300);
+    });
+
+    function scrollToApplication() {
+      document.getElementById("application").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function setTime() {
+      document.getElementById("time").value = new Date().toLocaleString();
+    }
+</script>
+
+</body>
+</html>
